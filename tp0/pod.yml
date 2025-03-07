@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: devops-cursus
+  labels:
+    app: devops
+    version: v1
+  namespace: default
+spec:
+  containers:
+  - image: mmumshad/simple-webapp-color
+    imagePullPolicy: IfNotPresent
+    name: devops-cursus
+    resources: {}
+    ports:
+    - containerPort: 8080
+  # dnsPolicy: ClusterFirst
+  # enableServiceLinks: true
+  # nodeName: minikube
+  # preemptionPolicy: PreemptLowerPriority
+  # priority: 0
+  restartPolicy: Always

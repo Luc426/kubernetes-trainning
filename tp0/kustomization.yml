@@ -1,0 +1,3 @@
+resources:
+- color-deployment.yml
+- color-svc.yml
