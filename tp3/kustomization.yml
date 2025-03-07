@@ -1,0 +1,7 @@
+resources:
+- namespace.yml
+- blue-deploy.yml
+- red-deploy.yml
+- pink-deploy.yml
+- green-deploy.yml
+- color-svc.yml

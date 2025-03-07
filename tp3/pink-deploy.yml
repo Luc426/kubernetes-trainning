@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pink-pod
+  namespace: production
+  labels:
+    app: web
+    version: v1
+spec:
+  containers:
+  - image: mmumshad/simple-webapp-color
+    imagePullPolicy: IfNotPresent
+    name: pink-pod
+    env: 
+    - name: APP_COLOR
+      value: "pink"
+    resources: {}
+    ports:
+    - containerPort: 8080
+  restartPolicy: Always

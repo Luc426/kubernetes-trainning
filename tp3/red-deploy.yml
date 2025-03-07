@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: red-pod
+  namespace: production
+  labels:
+    app: web
+    version: v1
+spec:
+  containers:
+  - image: mmumshad/simple-webapp-color
+    imagePullPolicy: IfNotPresent
+    name: red-pod
+    env: 
+    - name: APP_COLOR
+      value: "red"
+    resources: {}
+    ports:
+    - containerPort: 8080
+  restartPolicy: Always
