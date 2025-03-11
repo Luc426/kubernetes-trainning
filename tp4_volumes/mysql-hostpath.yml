@@ -1,0 +1,42 @@
+
+# Version avec hostPath
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysqli
+  labels:
+    app: mysqli
+    version: v1
+  namespace: default
+
+spec:
+  containers:
+  - image: mysql
+    imagePullPolicy: IfNotPresent
+    name: msql-volume
+    volumeMounts:
+    - mountPath: /var/lib/mysql
+      name: data-volume
+    env:
+    # Enter the root password first or the following database configuration will not be set
+    - name: MYSQL_ROOT_PASSWORD 
+      value: password
+    - name: MYSQL_DATABASE
+      value: easytraining
+    - name: MYSQL_USER
+      value: easy
+    - name: MYSQL_PASSWORD
+      value: easy
+    ports:
+    - containerPort: 3306
+  
+  restartPolicy: Always
+
+# The direcory must be linked both on the host and minikube container
+  volumes: 
+  - name: data-volume
+    hostPath:
+      path: /data-volume
+      type: Directory
+      # type: DirectoryOrCreate

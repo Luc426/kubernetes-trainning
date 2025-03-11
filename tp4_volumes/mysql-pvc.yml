@@ -1,3 +1,6 @@
+
+# Version avec PersistentVolumeClaim
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -8,21 +11,13 @@ metadata:
   namespace: default
 
 spec:
-#   initContainers:
-#   - name: init-mysql
-#     image: busybox
-#     command: ['sh', '-c', 'mkdir -p /var/lib/mysql && chown -R 999:999 /var/lib/mysql']
-#     volumeMounts:
-#     - mountPath: /var/lib/mysql
-#       name: data-sql
-    
   containers:
   - image: mysql
     imagePullPolicy: IfNotPresent
     name: msql-volume
-    # volumeMounts:
-    # - mountPath: /var/lib/mysql
-    #   name: data-sql
+    volumeMounts:
+    - mountPath: /var/lib/mysql
+      name: data-volume
     env:
     - name: MYSQL_ROOT_PASSWORD # Bien mettre root en premier sinon la personnalisation ne fonctionne pas
       value: password
@@ -37,7 +32,7 @@ spec:
   
   restartPolicy: Always
 
-  volumes:
+  volumes: # En cas de problème, vérifier si le montage est fait dans le conteneur minikube
   - name: data-volume
     persistentVolumeClaim:
       claimName: data-volume

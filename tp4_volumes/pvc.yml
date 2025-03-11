@@ -8,5 +8,7 @@ spec:
   resources:
      requests:
        storage: 500Mi
+  storageClassName: manual
+
   
-  # Déclaration d'un PVC consommable par un pod
+  # PVCs are the resources used by pods
